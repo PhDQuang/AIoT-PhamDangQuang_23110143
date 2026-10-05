@@ -11,6 +11,19 @@ url='https://github.com/PhDQuang/AIoT-PhamDangQuang_23110143'
 with ZipFile(source) as z:
     files={n:z.read(n) for n in z.namelist()}
 xml=files['word/document.xml'].decode('utf-8')
+def final_cover(match):
+    p=match.group()
+    texts=re.findall(r'<w:t(?:\s[^>]*)?>(.*?)</w:t>',p,flags=re.S)
+    if ''.join(texts)=='ĐỀ CƯƠNG BÁO CÁO THỰC HÀNH GIỮA KỲ':
+        first=True
+        def replace_text(m):
+            nonlocal first
+            value='BÁO CÁO TIỂU LUẬN CUỐI KỲ' if first else ''
+            first=False
+            return '<w:t>'+value+'</w:t>'
+        return re.sub(r'<w:t(?:\s[^>]*)?>.*?</w:t>',replace_text,p,flags=re.S)
+    return p
+xml=re.sub(r'<w:p(?:\s[^>]*)?>.*?</w:p>',final_cover,xml,flags=re.S)
 rels=files['word/_rels/document.xml.rels'].decode('utf-8')
 rid='rIdFinalGithub'
 rels=rels.replace('</Relationships>',f'<Relationship Id="{rid}" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink" Target="{url}" TargetMode="External"/></Relationships>')

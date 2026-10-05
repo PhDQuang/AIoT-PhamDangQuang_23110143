@@ -5,6 +5,7 @@ __pycache__/
 .venv/
 artifacts/*
 !artifacts/.gitkeep
+artifacts/
 .uv-cache/
 inputs/proxy/
 inputs/final/

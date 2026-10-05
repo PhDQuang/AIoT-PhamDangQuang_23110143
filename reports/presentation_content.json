@@ -1,24 +1,318 @@
 [
- {"title":"Sinh tín hiệu PPG theo nhịp tim", "subtitle":"Mạng tự mã hóa biến phân có điều kiện một chiều", "body":["Phạm Đăng Quang   •   23110143","Học phần Trí tuệ nhân tạo cho IoT","Giảng viên: ThS. Hồ Nhựt Minh"], "cover":true},
- {"title":"Bài toán và sản phẩm", "body":["Sinh cửa sổ PPG mới từ nhịp tim mục tiêu và vector tiềm ẩn ngẫu nhiên.","Mỗi cửa sổ dài 8 giây, gồm 512 mẫu tại 64 Hz.","Sản phẩm gồm bộ sinh cVAE, đối chuẩn hai Gaussian, kết quả đánh giá và web trình diễn."],"note":"Nguồn: đề cương G2 và báo cáo, mục 1.2–1.3. Phân biệt sinh tín hiệu theo HR với dự báo từ lịch sử."},
- {"title":"Quy trình thực hiện", "image":"pipeline", "body":["Từ dữ liệu thực đến mô hình tạo sinh và đánh giá theo nhịp tim."],"note":"Nguồn: báo cáo Hình 1. Chuẩn hóa và chọn mô hình sử dụng train/validation của từng fold."},
- {"title":"Tập dữ liệu PPG-DaLiA", "body":["15 người tham gia với dữ liệu sinh hoạt hằng ngày.","BVP cổ tay 64 Hz là tín hiệu đầu vào. HR tham chiếu được xây dựng từ ECG ngực.","Cửa sổ 8 giây, bước trượt 2 giây. Mỗi fold giữ 64.667 cửa sổ hợp lệ."],"note":"Nguồn: báo cáo 2.1–2.2. PPG-DaLiA: https://archive.ics.uci.edu/dataset/495/ppg+dalia . Mỗi fold có cùng 64.697 ứng viên trước lọc."},
- {"title":"Chia dữ liệu theo người", "image":"folds", "body":["5 fold với 9 người train, 3 người validation và 3 người test.","Mỗi fold có normalization, bộ đo HR và checkpoint riêng."],"note":"Nguồn: báo cáo Hình 2 và Bảng 4. Nhóm G1–G5 lần lượt chứa S1–S3, S4–S6, S7–S9, S10–S12, S13–S15."},
- {"title":"Tiền xử lý tín hiệu", "body":["Căn cửa sổ PPG với nhãn HR tham chiếu.","Lọc Butterworth bậc 4 trong dải 0,5–8 Hz, xử lý riêng từng đoạn hữu hạn.","Kiểm tra biên lọc, dữ liệu thiếu và tín hiệu hằng.","Chuẩn hóa theo thống kê train. Validation và test dùng cùng thống kê."],"note":"Nguồn: báo cáo 2.2. Margin biên lọc 128 mẫu, 30 cửa sổ loại trong mỗi fold."},
- {"title":"Kiến trúc 1D-cVAE", "image":"architecture", "body":["Encoder học phân phối tiềm ẩn. Decoder sinh 512 mẫu từ z và điều kiện c = HR/60."],"note":"Nguồn: báo cáo Hình 4. Latent 16 chiều, tổng 366.625 tham số, decoder 84.081 tham số."},
- {"title":"Hai chế độ của mô hình", "table":[["Thuộc tính","Tái tạo","Sinh tự do"],["Đầu vào","PPG thật và HR","HR và seed"],["Vector z","Posterior mean μ","Phân phối N(0,I)"],["Đánh giá","RMSE ghép cặp","MAE HR, V, A₃"],["Mục đích","Biểu diễn cửa sổ thật","Tạo cửa sổ PPG mới"]], "body":["Web sử dụng decoder ở chế độ sinh tự do."],"note":"Nguồn: báo cáo 3.2. Không ghép các cửa sổ độc lập thành một bản ghi liên tục."},
- {"title":"Huấn luyện và ràng buộc HR", "body":["Hàm mất mát: L = Lrec + βLKL + λHR LHR.","Mạng HR phụ trợ được cố định trọng số khi huấn luyện cVAE.","Adam, learning rate 10⁻³, batch size 128, tối đa 100 epoch.","Chọn checkpoint theo validation. Mô hình cơ sở chạy seed 42, 43 và 44."],"note":"Nguồn: báo cáo 3.3 và 4.1. HR loss áp dụng cho tái tạo posterior, lambda_prior = 0. Early stopping patience 12 sau warmup."},
- {"title":"Diễn biến huấn luyện", "image":"training", "body":["Theo dõi riêng sai số tái tạo, KL và HR loss trên train và validation."],"note":"Nguồn: báo cáo Hình 5. Minh họa cVAE fold 1 seed 42, các thành phần loss có thang đo khác nhau."},
- {"title":"Đối chuẩn và thiết kế đánh giá", "body":["Hai Gaussian đặt chu kỳ theo HR và lấy tham số hình thái từ dữ liệu train.","1.000 cửa sổ tại mỗi HR 60, 80 và 120 bpm trong mỗi run.","5 fold, 3 seed cho cVAE và Gaussian. Hai ablation sử dụng seed 42.","40 run, tổng 120.000 cửa sổ sinh."],"note":"Nguồn: báo cáo 3.4 và 4.4. Gaussian là đối chuẩn hai thành phần, không phải tái lập toàn bộ PPGSynth."},
- {"title":"Chỉ số đánh giá", "table":[["Chỉ số","Ý nghĩa"],["MAE HR (bpm)","Sai lệch HR trung bình trên cửa sổ đo được"],["V (%)","Tỷ lệ cửa sổ đo được HR"],["A₃ (%)","Tỷ lệ toàn bộ cửa sổ có sai lệch ≤ 3 bpm"],["RMSE (đơn vị Z)","Sai số tái tạo từng điểm trên cặp PPG thật–tái tạo"],["Hình thái và đa dạng","Độ rộng xung, thời gian lên đỉnh, phân tán nhịp"]], "note":"Nguồn: báo cáo 4.3. Trung bình seed trong fold, sau đó trung bình đều 5 fold. Mẫu không đo được giữ trong mẫu số V và A3."},
- {"title":"Kết quả sai số nhịp tim", "table":[["HR mục tiêu","cVAE MAE ± SD","Gaussian MAE ± SD"],["60 bpm","17,88 ± 4,59","7,07 ± 2,94"],["80 bpm","8,47 ± 1,58","2,90 ± 0,99"],["120 bpm","34,09 ± 4,36","0,00 ± 0,00"]], "body":["cVAE có sai số thấp nhất tại 80 bpm trong ba điều kiện khảo sát.","Đơn vị bpm. SD mô tả biến thiên giữa năm fold."],"note":"Nguồn: báo cáo Bảng 8, results/summary. Trung bình đều 3 target: cVAE 20,15 bpm, Gaussian 3,32 bpm. Kết quả là số đo thực nghiệm, tách biệt mục tiêu thiết kế ≤3 bpm."},
- {"title":"Tỷ lệ đo được và sai lệch trong 3 bpm", "table":[["HR","V cVAE","A₃ cVAE","A₃ Gaussian"],["60","100,00%","5,53%","88,09%"],["80","99,99%","21,15%","95,30%"],["120","100,00%","1,95%","99,39%"]], "body":["V và A₃ mô tả hai thuộc tính riêng: khả năng đo và độ gần HR mục tiêu."],"note":"Nguồn: báo cáo 5.2. Giá trị làm tròn hai chữ số. A3 giữ toàn bộ cửa sổ trong mẫu số."},
- {"title":"Tái tạo tín hiệu PPG thực", "image":"reconstruction", "body":["Ba cửa sổ test đầu tiên của fold 1 seed 42. RMSE trung bình qua 5 fold: 0,527 đơn vị Z."],"note":"Nguồn: báo cáo Hình 12 và mục 5.6. Posterior mean z=μ, cùng thống kê chuẩn hóa train. Đây là phép tái tạo, khác phép sinh từ prior."},
- {"title":"Biến thiên hình dạng tín hiệu sinh", "image":"waveforms", "body":["Giữ z và đổi HR để khảo sát điều kiện. Giữ HR và đổi z để khảo sát biến thiên dạng sóng."],"note":"Nguồn: báo cáo Hình 11. Cột trái cùng z, cột phải cùng HR 80 bpm. Fold 1 seed 42."},
- {"title":"Triển khai decoder trên CPU", "table":[["Thuộc tính","Kết quả"],["Tổng tham số cVAE","366.625"],["Tham số decoder","84.081"],["Tệp decoder FP32","0,340 MB"],["P95 decoder trên máy thử","0,831–1,480 ms"],["Cấu hình đo","CPU một luồng, batch 1, 1.000 lượt đo"]], "body":["Decoder phù hợp mục tiêu kích thước và thời gian suy luận của đề cương."],"note":"Nguồn: báo cáo 5.10. Intel i5-1145G7, Windows 11, 100 warmup. P95 chỉ decoder, không bao gồm I/O và vẽ giao diện."},
- {"title":"Web demo PPG Studio", "body":["Chọn HR, seed và 1, 5 hoặc 20 cửa sổ.","Quan sát cVAE xanh lá và Gaussian xanh dương trên cùng trục 0–8 giây.","Hiển thị HR mục tiêu, HR đo độc lập, MAE, V và A₃.","Xuất PNG, CSV và JSON. Demo trực tiếp tại http://127.0.0.1:8000."],"note":"Nguồn: web/index.html, web/app.js, src/ppg_cvae/web.py. Chạy scripts/start_web.ps1. Có thể bổ sung ảnh chụp giao diện theo reports/HUONG_DAN_BO_SUNG_ANH_WEB.md."},
- {"title":"Kết quả suy luận dùng trong web", "image":"web_demo_backend", "body":["HR 60, 80 và 120 bpm, latent seed 42. Mỗi điều kiện tạo một cửa sổ."],"note":"Nguồn: báo cáo Hình 19. Đây là biểu đồ đầu ra backend thật, không phải ảnh chụp giao diện. cVAE đo 78,4 / 88,3 / 91,4 bpm, Gaussian 60 / 80 / 120 bpm. Checkpoint fold 1 seed 42."},
- {"title":"Sản phẩm và hướng phát triển", "body":["Đã xây dựng quy trình dữ liệu, cVAE một chiều và bộ sinh hai Gaussian.","Đã tổ chức đánh giá theo người, lưu checkpoint và kết quả thực nghiệm.","Web hỗ trợ sinh, đo nhịp và xuất kết quả trên CPU.","Hướng phát triển: ràng buộc mẫu prior, mở rộng phép đo và tích hợp CPU gateway."],"note":"Nguồn: báo cáo Chương 7. GitHub: https://github.com/PhDQuang/AIoT-PhamDangQuang_23110143 . Các hướng phát triển là đề xuất cho nghiên cứu tiếp theo."},
- {"title":"Mã nguồn và tài liệu", "body":["github.com/PhDQuang/AIoT-PhamDangQuang_23110143","Notebook nguồn và bản đã thực thi: notebooks/","Khởi động demo: scripts/start_web.ps1","Báo cáo, PowerPoint và gói mã nguồn: PhamDangQuang_final"],"note":"Nguồn: repository được sinh viên cung cấp. Tài liệu nền tảng: PPG-DaLiA https://archive.ics.uci.edu/dataset/495/ppg+dalia ; VAE https://arxiv.org/abs/1312.6114 ; cVAE https://proceedings.neurips.cc/paper/2015/hash/8d55a249e6baa5c06772297520da2051-Abstract.html ."},
- {"title":"Em xin chân thành cảm ơn", "subtitle":"Kính mời thầy và các bạn trao đổi", "body":["Phạm Đăng Quang","23110143"], "cover":true}
+  {
+    "title": "Sinh tín hiệu PPG theo nhịp tim",
+    "subtitle": "Mạng tự mã hóa biến phân có điều kiện một chiều",
+    "body": [
+      "Phạm Đăng Quang   •   23110143",
+      "Học phần Trí tuệ nhân tạo cho IoT",
+      "Giảng viên: ThS. Hồ Nhựt Minh"
+    ],
+    "cover": true
+  },
+  {
+    "title": "Bài toán và sản phẩm",
+    "body": [
+      "Sinh cửa sổ PPG mới từ nhịp tim mục tiêu và vector tiềm ẩn ngẫu nhiên.",
+      "Mỗi cửa sổ dài 8 giây, gồm 512 mẫu tại 64 Hz.",
+      "Sản phẩm gồm bộ sinh cVAE, đối chuẩn hai Gaussian, kết quả đánh giá và web trình diễn."
+    ],
+    "note": "Nguồn: đề cương G2 và báo cáo, mục 1.2–1.3. Phân biệt sinh tín hiệu theo HR với dự báo từ lịch sử."
+  },
+  {
+    "title": "Quy trình thực hiện",
+    "image": "pipeline",
+    "body": [
+      "Từ dữ liệu thực đến mô hình tạo sinh và đánh giá theo nhịp tim."
+    ],
+    "note": "Nguồn: báo cáo Hình 1. Chuẩn hóa và chọn mô hình sử dụng train/validation của từng fold."
+  },
+  {
+    "title": "Tập dữ liệu PPG-DaLiA",
+    "body": [
+      "15 người tham gia với dữ liệu sinh hoạt hằng ngày.",
+      "BVP cổ tay 64 Hz là tín hiệu đầu vào. HR tham chiếu được xây dựng từ ECG ngực.",
+      "Cửa sổ 8 giây, bước trượt 2 giây. Mỗi fold giữ 64.667 cửa sổ hợp lệ."
+    ],
+    "note": "Nguồn: báo cáo 2.1–2.2. PPG-DaLiA: https://archive.ics.uci.edu/dataset/495/ppg+dalia . Mỗi fold có cùng 64.697 ứng viên trước lọc."
+  },
+  {
+    "title": "Chia dữ liệu theo người",
+    "image": "folds",
+    "body": [
+      "5 fold với 9 người train, 3 người validation và 3 người test.",
+      "Mỗi fold có normalization, bộ đo HR và checkpoint riêng."
+    ],
+    "note": "Nguồn: báo cáo Hình 2 và Bảng 4. Nhóm G1–G5 lần lượt chứa S1–S3, S4–S6, S7–S9, S10–S12, S13–S15."
+  },
+  {
+    "title": "Tiền xử lý tín hiệu",
+    "body": [
+      "Căn cửa sổ PPG với nhãn HR tham chiếu.",
+      "Lọc Butterworth bậc 4 trong dải 0,5–8 Hz, xử lý riêng từng đoạn hữu hạn.",
+      "Kiểm tra biên lọc, dữ liệu thiếu và tín hiệu hằng.",
+      "Chuẩn hóa theo thống kê train. Validation và test dùng cùng thống kê."
+    ],
+    "note": "Nguồn: báo cáo 2.2. Margin biên lọc 128 mẫu, 30 cửa sổ loại trong mỗi fold."
+  },
+  {
+    "title": "Kiến trúc 1D-cVAE",
+    "image": "architecture",
+    "body": [
+      "Encoder học phân phối tiềm ẩn. Decoder sinh 512 mẫu từ z và điều kiện c = HR/60."
+    ],
+    "note": "Nguồn: báo cáo Hình 4. Latent 16 chiều, tổng 366.625 tham số, decoder 84.081 tham số."
+  },
+  {
+    "title": "Hai chế độ của mô hình",
+    "table": [
+      [
+        "Thuộc tính",
+        "Tái tạo",
+        "Sinh tự do"
+      ],
+      [
+        "Đầu vào",
+        "PPG thật và HR",
+        "HR và seed"
+      ],
+      [
+        "Vector z",
+        "Posterior mean μ",
+        "Phân phối N(0,I)"
+      ],
+      [
+        "Đánh giá",
+        "RMSE ghép cặp",
+        "MAE HR, V, A₃"
+      ],
+      [
+        "Mục đích",
+        "Biểu diễn cửa sổ thật",
+        "Tạo cửa sổ PPG mới"
+      ]
+    ],
+    "body": [
+      "Web sử dụng decoder ở chế độ sinh tự do."
+    ],
+    "note": "Nguồn: báo cáo 3.2. Không ghép các cửa sổ độc lập thành một bản ghi liên tục."
+  },
+  {
+    "title": "Huấn luyện và ràng buộc HR",
+    "body": [
+      "Hàm mất mát: L = Lrec + βLKL + λHR LHR.",
+      "Mạng HR phụ trợ được cố định trọng số khi huấn luyện cVAE.",
+      "Adam, learning rate 10⁻³, batch size 128, tối đa 100 epoch.",
+      "Chọn checkpoint theo validation. Mô hình cơ sở chạy seed 42, 43 và 44."
+    ],
+    "note": "Nguồn: báo cáo 3.3 và 4.1. HR loss áp dụng cho tái tạo posterior, lambda_prior = 0. Early stopping patience 12 sau warmup."
+  },
+  {
+    "title": "Diễn biến huấn luyện",
+    "image": "training",
+    "body": [
+      "Theo dõi riêng sai số tái tạo, KL và HR loss trên train và validation."
+    ],
+    "note": "Nguồn: báo cáo Hình 5. Minh họa cVAE fold 1 seed 42, các thành phần loss có thang đo khác nhau."
+  },
+  {
+    "title": "Đối chuẩn và thiết kế đánh giá",
+    "body": [
+      "Hai Gaussian đặt chu kỳ theo HR và lấy tham số hình thái từ dữ liệu train.",
+      "1.000 cửa sổ tại mỗi HR 60, 80 và 120 bpm trong mỗi run.",
+      "5 fold, 3 seed cho cVAE và Gaussian. Hai ablation sử dụng seed 42.",
+      "40 run, tổng 120.000 cửa sổ sinh."
+    ],
+    "note": "Nguồn: báo cáo 3.4 và 4.4. Gaussian là đối chuẩn hai thành phần, không phải tái lập toàn bộ PPGSynth."
+  },
+  {
+    "title": "Chỉ số đánh giá",
+    "table": [
+      [
+        "Chỉ số",
+        "Ý nghĩa"
+      ],
+      [
+        "MAE HR (bpm)",
+        "Sai lệch HR trung bình trên cửa sổ đo được"
+      ],
+      [
+        "V (%)",
+        "Tỷ lệ cửa sổ đo được HR"
+      ],
+      [
+        "A₃ (%)",
+        "Tỷ lệ toàn bộ cửa sổ có sai lệch ≤ 3 bpm"
+      ],
+      [
+        "RMSE (đơn vị Z)",
+        "Sai số tái tạo từng điểm trên cặp PPG thật–tái tạo"
+      ],
+      [
+        "Hình thái và đa dạng",
+        "Độ rộng xung, thời gian lên đỉnh, phân tán nhịp"
+      ]
+    ],
+    "note": "Nguồn: báo cáo 4.3. Trung bình seed trong fold, sau đó trung bình đều 5 fold. Mẫu không đo được giữ trong mẫu số V và A3."
+  },
+  {
+    "title": "Kết quả sai số nhịp tim",
+    "table": [
+      [
+        "HR mục tiêu",
+        "cVAE MAE ± SD",
+        "Gaussian MAE ± SD"
+      ],
+      [
+        "60 bpm",
+        "17,88 ± 4,59",
+        "7,07 ± 2,94"
+      ],
+      [
+        "80 bpm",
+        "8,47 ± 1,58",
+        "2,90 ± 0,99"
+      ],
+      [
+        "120 bpm",
+        "34,09 ± 4,36",
+        "0,00 ± 0,00"
+      ]
+    ],
+    "body": [
+      "cVAE có sai số thấp nhất tại 80 bpm trong ba điều kiện khảo sát.",
+      "Đơn vị bpm. SD mô tả biến thiên giữa năm fold."
+    ],
+    "note": "Nguồn: báo cáo Bảng 8, results/summary. Trung bình đều 3 target: cVAE 20,15 bpm, Gaussian 3,32 bpm. Kết quả là số đo thực nghiệm, tách biệt mục tiêu thiết kế ≤3 bpm."
+  },
+  {
+    "title": "Tỷ lệ đo được và sai lệch trong 3 bpm",
+    "table": [
+      [
+        "HR",
+        "V cVAE",
+        "A₃ cVAE",
+        "A₃ Gaussian"
+      ],
+      [
+        "60",
+        "100,00%",
+        "5,53%",
+        "88,09%"
+      ],
+      [
+        "80",
+        "99,99%",
+        "21,15%",
+        "95,30%"
+      ],
+      [
+        "120",
+        "100,00%",
+        "1,95%",
+        "99,39%"
+      ]
+    ],
+    "body": [
+      "V và A₃ mô tả hai thuộc tính riêng: khả năng đo và độ gần HR mục tiêu."
+    ],
+    "note": "Nguồn: báo cáo 5.2. Giá trị làm tròn hai chữ số. A3 giữ toàn bộ cửa sổ trong mẫu số."
+  },
+  {
+    "title": "Tái tạo tín hiệu PPG thực",
+    "image": "reconstruction",
+    "body": [
+      "Ba cửa sổ test đầu tiên của fold 1 seed 42. RMSE trung bình qua 5 fold: 0,527 đơn vị Z."
+    ],
+    "note": "Nguồn: báo cáo Hình 12 và mục 5.6. Posterior mean z=μ, cùng thống kê chuẩn hóa train. Đây là phép tái tạo, khác phép sinh từ prior."
+  },
+  {
+    "title": "Biến thiên hình dạng tín hiệu sinh",
+    "image": "waveforms",
+    "body": [
+      "Giữ z và đổi HR để khảo sát điều kiện. Giữ HR và đổi z để khảo sát biến thiên dạng sóng."
+    ],
+    "note": "Nguồn: báo cáo Hình 11. Cột trái cùng z, cột phải cùng HR 80 bpm. Fold 1 seed 42."
+  },
+  {
+    "title": "Triển khai decoder trên CPU",
+    "table": [
+      [
+        "Thuộc tính",
+        "Kết quả"
+      ],
+      [
+        "Tổng tham số cVAE",
+        "366.625"
+      ],
+      [
+        "Tham số decoder",
+        "84.081"
+      ],
+      [
+        "Tệp decoder FP32",
+        "0,340 MB"
+      ],
+      [
+        "P95 decoder trên máy thử",
+        "0,831–1,480 ms"
+      ],
+      [
+        "Cấu hình đo",
+        "CPU một luồng, batch 1, 1.000 lượt đo"
+      ]
+    ],
+    "body": [
+      "Decoder phù hợp mục tiêu kích thước và thời gian suy luận của đề cương."
+    ],
+    "note": "Nguồn: báo cáo 5.10. Intel i5-1145G7, Windows 11, 100 warmup. P95 chỉ decoder, không bao gồm I/O và vẽ giao diện."
+  },
+  {
+    "title": "Web demo PPG Studio",
+    "body": [
+      "Chọn HR, seed và 1, 5 hoặc 20 cửa sổ.",
+      "Quan sát cVAE xanh lá và Gaussian xanh dương trên cùng trục 0–8 giây.",
+      "Hiển thị HR mục tiêu, HR đo độc lập, MAE, V và A₃.",
+      "Xuất PNG, CSV và JSON. Demo trực tiếp tại http://127.0.0.1:8000."
+    ],
+    "note": "Nguồn: web/index.html, web/app.js, src/ppg_cvae/web.py. Chạy scripts/start_web.ps1. Có thể bổ sung ảnh chụp giao diện theo reports/HUONG_DAN_BO_SUNG_ANH_WEB.md. Image source: interface screenshot already inserted in the student report, figure 19.",
+    "image": "web_interface",
+    "side": true
+  },
+  {
+    "title": "Kết quả suy luận dùng trong web",
+    "image": "web_demo_backend",
+    "body": [
+      "HR 60, 80 và 120 bpm, latent seed 42. Mỗi điều kiện tạo một cửa sổ."
+    ],
+    "note": "Nguồn: báo cáo Hình 19. Đây là biểu đồ đầu ra backend thật, không phải ảnh chụp giao diện. cVAE đo 78,4 / 88,3 / 91,4 bpm, Gaussian 60 / 80 / 120 bpm. Checkpoint fold 1 seed 42."
+  },
+  {
+    "title": "Sản phẩm và hướng phát triển",
+    "body": [
+      "Đã xây dựng quy trình dữ liệu, cVAE một chiều và bộ sinh hai Gaussian.",
+      "Đã tổ chức đánh giá theo người, lưu checkpoint và kết quả thực nghiệm.",
+      "Web hỗ trợ sinh, đo nhịp và xuất kết quả trên CPU.",
+      "Hướng phát triển: ràng buộc mẫu prior, mở rộng phép đo và tích hợp CPU gateway."
+    ],
+    "note": "Nguồn: báo cáo Chương 7. GitHub: https://github.com/PhDQuang/AIoT-PhamDangQuang_23110143 . Các hướng phát triển là đề xuất cho nghiên cứu tiếp theo."
+  },
+  {
+    "title": "Mã nguồn và tài liệu",
+    "body": [
+      "github.com/PhDQuang/AIoT-PhamDangQuang_23110143",
+      "Notebook nguồn và bản đã thực thi: notebooks/",
+      "Khởi động demo: scripts/start_web.ps1",
+      "Báo cáo, PowerPoint và gói mã nguồn: PhamDangQuang_final"
+    ],
+    "note": "Nguồn: repository được sinh viên cung cấp. Tài liệu nền tảng: PPG-DaLiA https://archive.ics.uci.edu/dataset/495/ppg+dalia ; VAE https://arxiv.org/abs/1312.6114 ; cVAE https://proceedings.neurips.cc/paper/2015/hash/8d55a249e6baa5c06772297520da2051-Abstract.html ."
+  },
+  {
+    "title": "Em xin chân thành cảm ơn",
+    "subtitle": "Kính mời thầy và các bạn trao đổi",
+    "body": [
+      "Phạm Đăng Quang",
+      "23110143"
+    ],
+    "cover": true
+  }
 ]

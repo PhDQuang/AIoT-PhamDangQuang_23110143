@@ -40,9 +40,16 @@ try {
     $pic=$slide.Shapes.AddPicture($file,0,-1,0,0,-1,-1)
     $ratio=$pic.Width/$pic.Height
     $maxW=850; $maxH=325
+    if($item.side){$maxW=425; $maxH=370}
     if($ratio -gt $maxW/$maxH){$pic.Width=[single]$maxW; $pic.Height=[single]($maxW/$ratio)}else{$pic.Height=[single]$maxH; $pic.Width=[single]($maxH*$ratio)}
-    $pic.Left=[single]((960-$pic.Width)/2); $pic.Top=[single](115+(325-$pic.Height)/2)
-    $null=Text $slide ($item.body -join "`r") 55 452 850 53 17 $gray
+    if($item.side){
+     $pic.Left=[single]55; $pic.Top=[single](120+(370-$pic.Height)/2)
+     $top=135
+     foreach($line in $item.body){$null=Text $slide $line 510 $top 395 75 20 $gray; $top+=85}
+    }else{
+     $pic.Left=[single]((960-$pic.Width)/2); $pic.Top=[single](115+(325-$pic.Height)/2)
+     $null=Text $slide ($item.body -join "`r") 55 452 850 53 17 $gray
+    }
    } elseif($item.table){
     $rows=$item.table.Count; $cols=$item.table[0].Count
     $height=[math]::Min(295,45*$rows)

@@ -1,0 +1,4 @@
+target_hr,mae_hr,median_abs_error,V,A3,failed_windows,num_samples,method,fold,seed,mean_temporal_std,num_beats
+60,10.517047541954312,0.0,0.969,0.83,31,1000,gaussian,1,42,0.19830103657391587,6749
+80,2.3410025369608958,0.0,0.994,0.965,6,1000,gaussian,1,42,0.1433465869621915,8810
+120,0.0,0.0,1.0,1.0,0,1000,gaussian,1,42,0.13875107048535607,13862

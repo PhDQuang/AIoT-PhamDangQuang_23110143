@@ -1,0 +1,1 @@
+{"thresholds_g": [0.1865094763838533, 0.4151561347550651], "fit_split": "train", "definition": "tertiles of candidate train-window demeaned ACC RMS", "role": "descriptive post-hoc, not quality filtering"}

@@ -1,0 +1,12 @@
+batch_size: 128
+beta: 0.01
+beta_warmup_epochs: 10
+condition_mode: hr
+fold: 3
+lambda_hr: 0.1
+lambda_prior: 0.0
+latent_dim: 16
+lr: 0.001
+max_epochs: 100
+patience: 12
+seed: 42

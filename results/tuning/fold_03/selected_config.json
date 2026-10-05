@@ -1,0 +1,21 @@
+{
+  "fold": 3,
+  "beta": 0.01,
+  "lambda_hr": 0.1,
+  "supported_targets": [
+    60,
+    80,
+    120
+  ],
+  "validation_seed": 1042,
+  "num_val_samples": 200,
+  "selection_rule": "V>=95% at supported targets, MAE, 0.1 bpm tie RMSE; fallback A3",
+  "selected_metrics": {
+    "beta": 0.01,
+    "lambda_hr": 0.1,
+    "all_V_ge_95": true,
+    "mean_mae_hr": 19.644212051275954,
+    "mean_A3": 0.10833333333333334,
+    "val_rmse": 0.5279510617256165
+  }
+}

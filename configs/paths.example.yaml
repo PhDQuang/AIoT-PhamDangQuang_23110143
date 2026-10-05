@@ -1,0 +1,2 @@
+data_root: /kaggle/input/ppg-dalia
+output_root: artifacts

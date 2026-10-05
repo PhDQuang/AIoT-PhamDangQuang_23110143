@@ -1,0 +1,23 @@
+{
+  "cpu": "11th Gen Intel(R) Core(TM) i5-1145G7 @ 2.60GHz",
+  "os": "Microsoft Windows NT 10.0.26200.0",
+  "ram_bytes": 34048368640,
+  "python": "3.12.15 (main, Oct  1 2026, 21:00:48) [MSC v.1944 64 bit (AMD64)]",
+  "torch": "2.14.1+cpu",
+  "runtime_os": "Windows-11-10.0.26200-SP0",
+  "device": "cpu",
+  "dtype": "float32",
+  "num_threads": 1,
+  "batch_size": 1,
+  "warmup": 100,
+  "iterations_per_hr": 1000,
+  "checkpoint": ".krun\\jobs\\20261004-151954-483f31\\output\\krun_outputs\\artifacts\\cvae\\fold_01\\seed_42\\decoder_state_dict.pt",
+  "decoder_bytes": 340199,
+  "memory": {
+    "working_set_bytes": 325890048,
+    "process_peak_working_set_bytes": 356311040
+  },
+  "memory_scope": "whole Python process incl. PyTorch, pandas, matplotlib and analysis; not decoder-only RAM",
+  "pipeline_scope": "sample z + decoder + numpy view + estimate_hr; excludes model loading, IO, plotting",
+  "benchmark_scope": "local Windows host; separate from original Kaggle experiment"
+}

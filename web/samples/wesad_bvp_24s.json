@@ -1,0 +1,18 @@
+{
+  "source_file": "BVP.csv",
+  "source_timestamp": 1500966308.0,
+  "sampling_rate_hz": 64.0,
+  "source_start_seconds": 60,
+  "source_end_seconds_exclusive": 84,
+  "samples": 1536,
+  "context_samples": 512,
+  "reference_samples": 1024,
+  "normalized": false,
+  "processing": "Removed two Empatica metadata lines; copied continuous samples 3840:5376 without filtering or normalization. Fixed start 60s avoids initial sensor startup zeros; not selected by model error.",
+  "context_hr_detector": {
+    "hr": 112.94117647058823,
+    "measurable": true,
+    "peaks": 13,
+    "reason": "ok"
+  }
+}

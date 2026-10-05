@@ -1,0 +1,9 @@
+{
+  "beta": 0.01,
+  "lambda_hr": 0.0,
+  "all_V_ge_95": true,
+  "mean_mae_hr": 21.96773292627826,
+  "mean_A3": 0.10000000000000002,
+  "val_rmse": 0.3952529728412628,
+  "role": "diagnostic_only_excluded_from_selection"
+}

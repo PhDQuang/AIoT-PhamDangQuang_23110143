@@ -1,0 +1,25 @@
+{
+  "parameter_counts": {
+    "encoder": 282544,
+    "decoder": 84081,
+    "cvae": 366625
+  },
+  "decoder_latency_ms_median": 0.3115810000053898,
+  "decoder_latency_ms_p95": 0.3713669002991082,
+  "device": "cpu",
+  "dtype": "float32",
+  "num_threads": 1,
+  "batch_size": 1,
+  "warmup": 100,
+  "iterations": 1000,
+  "cpu": "x86_64",
+  "os": "Linux-6.18.48+-x86_64-with-glibc2.39",
+  "torch": "2.11.0+cu128",
+  "proxy_parameters": 18209,
+  "decoder_state_dict_bytes": 340199,
+  "decoder_state_dict_mb": 0.340199,
+  "fold": 4,
+  "seed": 42,
+  "checkpoint": "artifacts/cvae/fold_04/seed_42/best_model.pt",
+  "scope": "Kaggle host CPU FP32 single-thread; not laptop or microcontroller latency"
+}

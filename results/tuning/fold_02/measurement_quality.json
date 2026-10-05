@@ -1,0 +1,55 @@
+{
+  "proxy": {
+    "best_val_mae_normalized": 0.12293248129354012,
+    "best_val_mae_bpm": 7.375948877612407
+  },
+  "detector": {
+    "selection_split": "val",
+    "results": [
+      {
+        "prominence": null,
+        "V": 1.0,
+        "mae_hr": 23.208629087349145,
+        "A3": 0.2127003699136868
+      },
+      {
+        "prominence": 0.1,
+        "V": 0.9966861898890259,
+        "mae_hr": 14.292986327428455,
+        "A3": 0.2915382244143033
+      },
+      {
+        "prominence": 0.25,
+        "V": 0.9756473489519112,
+        "mae_hr": 11.649055697834347,
+        "A3": 0.31219173859432797
+      },
+      {
+        "prominence": 0.5,
+        "V": 0.8985819975339088,
+        "mae_hr": 13.052467536286654,
+        "A3": 0.2709617755856967
+      },
+      {
+        "prominence": 1.0,
+        "V": 0.716476572133169,
+        "mae_hr": 15.827797338132289,
+        "A3": 0.1939734895191122
+      }
+    ],
+    "selected": {
+      "prominence": 0.25,
+      "V": 0.9756473489519112,
+      "mae_hr": 11.649055697834347,
+      "A3": 0.31219173859432797
+    },
+    "rule": "V>=0.95 then MAE; fallback maximum A3, then V"
+  },
+  "interpretation": "exploratory; proxy and detector have substantial error on real validation",
+  "source_job": "20261004-142710-0769e3",
+  "additional_control": {
+    "beta": 0.01,
+    "lambda_hr": 0.0,
+    "role": "diagnostic_only_excluded_from_selection"
+  }
+}

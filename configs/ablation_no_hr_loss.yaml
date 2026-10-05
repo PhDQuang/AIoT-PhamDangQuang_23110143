@@ -1,0 +1,4 @@
+name: ablation_no_hr_loss
+lambda_hr: 0.0
+lambda_prior: 0.0
+seed: 42

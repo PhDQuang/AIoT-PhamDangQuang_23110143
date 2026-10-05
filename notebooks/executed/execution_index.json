@@ -1,0 +1,57 @@
+[
+  {
+    "notebook": "00_kaggle_setup_and_data_audit.executed.ipynb",
+    "job": "20261003-171957-ff75c8",
+    "status": "executed_successfully"
+  },
+  {
+    "notebook": "00_eda_ppg_dalia.executed.ipynb",
+    "job": "20261003-174543-d0afbd",
+    "status": "executed_successfully"
+  },
+  {
+    "notebook": "01_build_manifest_and_preprocess.executed.ipynb",
+    "job": "20261003-182853-1b7400",
+    "status": "executed_successfully"
+  },
+  {
+    "notebook": "02_train_hr_proxy.executed.ipynb",
+    "job": "20261004-050604-c55386",
+    "status": "executed_successfully"
+  },
+  {
+    "notebook": "03_tune_cvae.executed.ipynb",
+    "job": "20261004-065805-ebc5a4",
+    "status": "executed_successfully"
+  },
+  {
+    "notebook": "08_export_decoder_and_cpu_benchmark.executed.ipynb",
+    "job": "20261003-124502-0383cc",
+    "status": "executed_successfully"
+  },
+  {
+    "notebook": "04_train_final_cross_validation.executed.ipynb",
+    "job": "20261004-085030-b15249",
+    "status": "executed_successfully"
+  },
+  {
+    "notebook": "05_train_evaluate_gaussian_baseline.executed.ipynb",
+    "job": "20261004-090009-492f73",
+    "status": "executed_successfully"
+  },
+  {
+    "notebook": "06_run_ablations.executed.ipynb",
+    "job": "20261004-090952-5512e0",
+    "status": "executed_successfully"
+  },
+  {
+    "notebook": "01b_prepare_remaining_folds.executed.ipynb",
+    "job": "20261004-125540-b4ff10",
+    "status": "executed_successfully"
+  },
+  {
+    "notebook": "02b_train_remaining_proxies.executed.ipynb",
+    "job": "20261004-142710-0769e3",
+    "status": "executed_successfully"
+  }
+]

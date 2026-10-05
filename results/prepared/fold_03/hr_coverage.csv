@@ -1,0 +1,10 @@
+split,target_hr,windows,subjects
+train,60,5645,7
+train,80,14999,9
+train,120,4903,9
+val,60,2773,3
+val,80,5008,3
+val,120,1558,3
+test,60,2488,3
+test,80,7047,3
+test,120,726,3

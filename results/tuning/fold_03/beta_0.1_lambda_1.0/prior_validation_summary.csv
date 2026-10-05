@@ -1,0 +1,4 @@
+target_hr,mae_hr,median_abs_error,V,A3,failed_windows,num_samples,mean_temporal_std,num_beats,rise_time_s_median,width50_s_median,rise_cycle_ratio_median,beat_extraction_success_median
+60,,,0.0,0.0,200,200,,0,,,,0.0
+80,,,0.0,0.0,200,200,,0,,,,0.0
+120,26.11489733959921,17.14285714285714,1.0,0.01,0,200,0.14317013167760861,875,0.46875,0.03125,0.625,1.0

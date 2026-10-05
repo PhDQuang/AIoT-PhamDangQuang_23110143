@@ -1,0 +1,15 @@
+seed: 42
+sampling_rate: 64
+window_size: 512
+stride: 128
+latent_dim: 16
+beta: 0.01
+lambda_hr: 1.0
+lambda_prior: 0.0
+batch_size: 128
+learning_rate: 0.001
+max_epochs: 100
+patience: 12
+beta_warmup_epochs: 10
+target_hrs: [60, 80, 120]
+num_final_samples: 1000

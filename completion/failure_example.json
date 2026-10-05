@@ -1,0 +1,7 @@
+{
+  "method": "gaussian",
+  "run": "gaussian\\fold_01\\seed_42",
+  "target_hr": 60,
+  "index": 18,
+  "reason": "hr_out_of_range"
+}

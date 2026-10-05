@@ -1,0 +1,12 @@
+{
+  "method": "no_hr_loss",
+  "fold": 4,
+  "seed": 42,
+  "num_samples": 1000,
+  "final_latent_seed": 42,
+  "validation_latent_seed": 1042,
+  "detector": {
+    "min_distance": 20,
+    "prominence": 0.5
+  }
+}

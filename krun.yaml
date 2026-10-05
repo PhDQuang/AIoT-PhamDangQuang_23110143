@@ -1,0 +1,16 @@
+project:
+  name: final-iot-for-ai
+
+runtime:
+  accelerator: cpu
+  internet: true
+
+entrypoint:
+  file: notebooks/00_kaggle_setup_and_data_audit.ipynb
+
+dependencies:
+  requirements: requirements.txt
+
+outputs:
+  - artifacts/
+  - outputs/

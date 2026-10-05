@@ -1,0 +1,15 @@
+{
+  "source_job": "20261004-050604-c55386",
+  "source_dir": ".krun/jobs/20261004-050604-c55386/output/krun_outputs/artifacts/proxy/fold_01",
+  "files": {
+    "detector_config.json": "434cf36b7f1ddaf2b7a5b2b2c16e3d038242866b00c2d37d44f375a7fec94087",
+    "detector_validation_metrics.json": "dadf44dd0e9b59b91d7f3a30ebc2000aaf85efbaeb546fecae2f6ebf48706ba6",
+    "environment.json": "c0577f241eb52108f56a2ee835b42c333341893a52bb62284ded1f2de6ea01b6",
+    "hr_proxy.pt": "ae5001a243e47a67a9a5fb430cec3ea9942b7288708ba23c6d1e2bf0f0055026",
+    "hr_proxy_validation_metrics.json": "fc7c961e632b1e0e49ab63461f0f4f2850a9ee18787a2972075eb41f3892a0f9",
+    "resolved_config.json": "ba7fc06390aca0942cb8387d4e704524ad87c8a611111356395d771cdc85c92c",
+    "training_history.csv": "0dda4f5cb2e5743f115c1db198dabefb9a3ffa09bd5a5598a43dc507cbd54c15",
+    "validation_by_hr_bin_lower.csv": "23dcfcf310cc4476f7bebd7ce1bfc7ce6e9862da4dc3a48714fee63767bada77",
+    "validation_by_subject_id.csv": "e6fe8abb86a916fa5be004c971f15728cbbe057b544a1a898ad7f840b4843ace"
+  }
+}

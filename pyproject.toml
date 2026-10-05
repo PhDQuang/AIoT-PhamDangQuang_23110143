@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ppg-cvae"
+version = "0.1.0"
+description = "Conditional 1D cVAE PPG waveform generation"
+requires-python = ">=3.10"
+dependencies = ["numpy", "scipy", "pandas", "pyyaml", "torch", "matplotlib"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

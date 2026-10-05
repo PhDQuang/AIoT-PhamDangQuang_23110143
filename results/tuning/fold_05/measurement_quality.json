@@ -1,0 +1,49 @@
+{
+  "proxy": {
+    "best_val_mae_normalized": 0.10986172807971341,
+    "best_val_mae_bpm": 6.5917036847828046
+  },
+  "detector": {
+    "selection_split": "val",
+    "results": [
+      {
+        "prominence": null,
+        "V": 1.0,
+        "mae_hr": 17.18333620893697,
+        "A3": 0.2846972364694174
+      },
+      {
+        "prominence": 0.1,
+        "V": 0.999693791625201,
+        "mae_hr": 11.802908202858783,
+        "A3": 0.3522927352063079
+      },
+      {
+        "prominence": 0.25,
+        "V": 0.9898185715379315,
+        "mae_hr": 9.753823554676478,
+        "A3": 0.3855928959657047
+      },
+      {
+        "prominence": 0.5,
+        "V": 0.9510066600321518,
+        "mae_hr": 9.965451412787004,
+        "A3": 0.3609431217943811
+      },
+      {
+        "prominence": 1.0,
+        "V": 0.7788410013013856,
+        "mae_hr": 12.843355775218468,
+        "A3": 0.2472632626502335
+      }
+    ],
+    "selected": {
+      "prominence": 0.25,
+      "V": 0.9898185715379315,
+      "mae_hr": 9.753823554676478,
+      "A3": 0.3855928959657047
+    },
+    "rule": "V>=0.95 then MAE; fallback maximum A3, then V"
+  },
+  "interpretation": "exploratory; real validation measurement error retained"
+}

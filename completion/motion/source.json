@@ -1,0 +1,9 @@
+{
+  "job_id": "20261005-045644-ae0c99",
+  "status": "complete",
+  "download": "complete",
+  "dataset": "ameersifat53/ppg-dalia-dataset",
+  "motion_csv_sha256": "5185fe4684d517811c67c49d0d61123cadea8f7a2c61047248d0cfbdc7ae46ce",
+  "window_count": 64697,
+  "all_five_manifests_joined_one_to_one": true
+}

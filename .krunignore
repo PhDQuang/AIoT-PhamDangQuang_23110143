@@ -1,0 +1,45 @@
+# Byte-compiled / cache files
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+
+# Large documents & reports not needed during training
+*.docx
+*.pdf
+
+# Model weights & checkpoint data (local)
+*.pt
+*.pth
+*.pkl
+*.npz
+*.npy
+
+# Output and runtime directories
+artifacts/*
+!artifacts/.gitkeep
+outputs/*
+!outputs/.gitkeep
+.krun/
+krun_outputs/
+krun_project/
+
+# Archive files
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# Version control
+.git/
+.uv-cache/
+inputs/proxy/
+inputs/final/
+inputs/overnight/
+reports/work/
+delivery/

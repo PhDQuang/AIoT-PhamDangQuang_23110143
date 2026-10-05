@@ -1,0 +1,242 @@
+{
+  "locked": true,
+  "locked_at_unix": 1791132253.628265,
+  "targets": [
+    60,
+    80,
+    120
+  ],
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "num_samples": 1000,
+  "validation_latent_seed": 1042,
+  "candidates": [
+    [
+      0.001,
+      1.0
+    ],
+    [
+      0.01,
+      0.1
+    ],
+    [
+      0.01,
+      1.0
+    ],
+    [
+      0.01,
+      5.0
+    ],
+    [
+      0.1,
+      1.0
+    ]
+  ],
+  "folds": [
+    {
+      "fold": 1,
+      "selected": {
+        "fold": 1,
+        "beta": 0.01,
+        "lambda_hr": 0.1,
+        "supported_targets": [
+          60,
+          80,
+          120
+        ],
+        "validation_seed": 1042,
+        "num_val_samples": 200,
+        "selection_rule": "V>=95% at supported targets, MAE, 0.1 bpm tie RMSE; fallback A3",
+        "selected_metrics": {
+          "beta": 0.01,
+          "lambda_hr": 0.1,
+          "all_V_ge_95": true,
+          "mean_mae_hr": 19.693561122192943,
+          "mean_A3": 0.07833333333333332,
+          "val_rmse": 0.5547592043876648
+        }
+      },
+      "detector": {
+        "min_distance": 20,
+        "prominence": 0.1
+      },
+      "detector_sha256": "434cf36b7f1ddaf2b7a5b2b2c16e3d038242866b00c2d37d44f375a7fec94087",
+      "normalization_sha256": "3b30ebf402bc21639301f0721b7e4d5d0c63728acbf5027b75fcfce6b6b5ed46",
+      "checkpoints_sha256": {
+        "cvae/fold_01/seed_42/best_model.pt": "c4be7044b88fb181eceb96996e4cc38c38abf72762c55330c714023ddb5d5566",
+        "gaussian/fold_01/seed_42/gaussian_fit.json": "f767c58641a108a8dcf56d93d765353ac230f82e969f5f015ad491e4914cc285",
+        "cvae/fold_01/seed_43/best_model.pt": "e7d349bcf0b8c52228e3a10e7d0b774dbf873b6f59d2d0ea00d11e84c6b29c7f",
+        "gaussian/fold_01/seed_43/gaussian_fit.json": "f767c58641a108a8dcf56d93d765353ac230f82e969f5f015ad491e4914cc285",
+        "cvae/fold_01/seed_44/best_model.pt": "15ad3283e0c84c385b7dad1604503d463af24dcdf0caa0e66677da93bdbe337a",
+        "gaussian/fold_01/seed_44/gaussian_fit.json": "f767c58641a108a8dcf56d93d765353ac230f82e969f5f015ad491e4914cc285",
+        "ablations/no_hr_loss/fold_01/seed_42/best_model.pt": "88147ec89e142dbf546a7e8be6d5af492129e6175ebf6a8c64b58893b37f21c2",
+        "ablations/no_condition/fold_01/seed_42/best_model.pt": "71bbc02214ff1d3132ce9aa584b94bda5c464160966e8f5dbfc774c4b51ed074"
+      }
+    },
+    {
+      "fold": 2,
+      "selected": {
+        "fold": 2,
+        "beta": 0.1,
+        "lambda_hr": 1.0,
+        "supported_targets": [
+          60,
+          80,
+          120
+        ],
+        "validation_seed": 1042,
+        "num_val_samples": 200,
+        "selection_rule": "V>=95% at supported targets, MAE, 0.1 bpm tie RMSE; fallback A3",
+        "selected_metrics": {
+          "beta": 0.1,
+          "lambda_hr": 1.0,
+          "all_V_ge_95": true,
+          "mean_mae_hr": 17.12748320018982,
+          "mean_A3": 0.16166666666666665,
+          "val_rmse": 0.4379471242427826
+        }
+      },
+      "detector": {
+        "min_distance": 20,
+        "prominence": 0.25
+      },
+      "detector_sha256": "cd505d359ef8a9aa8ecf5b3eece1a685ff30cdbba4d72aa28203f21ed001c12d",
+      "normalization_sha256": "3e85e8b41837eacf7922d935bab26a01ec113496d5e9176506ca61d15b39ee9f",
+      "checkpoints_sha256": {
+        "cvae/fold_02/seed_42/best_model.pt": "9acc92bc642835ceb1bb58ec83cdab38ecbb450360fa72adcbd395e83bd82676",
+        "gaussian/fold_02/seed_42/gaussian_fit.json": "f97f9f8c2df4f23dfcfce47a138d2180bf223bc385b657627a2bd66324254482",
+        "cvae/fold_02/seed_43/best_model.pt": "667c0e8c14fd1c2083092201d1f3f5c60309e41edbf08365d8f64cf13b93b94b",
+        "gaussian/fold_02/seed_43/gaussian_fit.json": "f97f9f8c2df4f23dfcfce47a138d2180bf223bc385b657627a2bd66324254482",
+        "cvae/fold_02/seed_44/best_model.pt": "932e27fa9a6f1cf5958b4026ceac3923dcd5d9d8fd4ac23ce3ebdc391e7d2dd7",
+        "gaussian/fold_02/seed_44/gaussian_fit.json": "f97f9f8c2df4f23dfcfce47a138d2180bf223bc385b657627a2bd66324254482",
+        "ablations/no_hr_loss/fold_02/seed_42/best_model.pt": "47eba614ad05926c4ff4df735ca9e1fbb235597f5985cb7c9c588125e0edd43b",
+        "ablations/no_condition/fold_02/seed_42/best_model.pt": "f8421370d2ca7d5029e4d283a375203858e5d8a49401c56d7425b0ec34d80ea8"
+      }
+    },
+    {
+      "fold": 3,
+      "selected": {
+        "fold": 3,
+        "beta": 0.01,
+        "lambda_hr": 0.1,
+        "supported_targets": [
+          60,
+          80,
+          120
+        ],
+        "validation_seed": 1042,
+        "num_val_samples": 200,
+        "selection_rule": "V>=95% at supported targets, MAE, 0.1 bpm tie RMSE; fallback A3",
+        "selected_metrics": {
+          "beta": 0.01,
+          "lambda_hr": 0.1,
+          "all_V_ge_95": true,
+          "mean_mae_hr": 19.644212051275954,
+          "mean_A3": 0.10833333333333334,
+          "val_rmse": 0.5279510617256165
+        }
+      },
+      "detector": {
+        "min_distance": 20,
+        "prominence": 0.25
+      },
+      "detector_sha256": "cd505d359ef8a9aa8ecf5b3eece1a685ff30cdbba4d72aa28203f21ed001c12d",
+      "normalization_sha256": "9dd57dd84bdb2b86be74e5ea754ba905919c7b28547d2e075702bebda83d7dad",
+      "checkpoints_sha256": {
+        "cvae/fold_03/seed_42/best_model.pt": "bc0ca1b968b0751ff4cf9feed8c89ab845843b8caf754d6d20799a4fa160c827",
+        "gaussian/fold_03/seed_42/gaussian_fit.json": "2080c76c7bd3ee315333be4857747c521a40a1b2e0df3ad5ac596e4978d722e5",
+        "cvae/fold_03/seed_43/best_model.pt": "9d4450343f9b421a07189f7a4f79cfb6c4cdf0c7fad1f88286a8d71584fbdfdc",
+        "gaussian/fold_03/seed_43/gaussian_fit.json": "2080c76c7bd3ee315333be4857747c521a40a1b2e0df3ad5ac596e4978d722e5",
+        "cvae/fold_03/seed_44/best_model.pt": "eeea6fe4573d4a242e0cef84e50d7579c1e87cfbc032b1f87a1b9fc1cff48b33",
+        "gaussian/fold_03/seed_44/gaussian_fit.json": "2080c76c7bd3ee315333be4857747c521a40a1b2e0df3ad5ac596e4978d722e5",
+        "ablations/no_hr_loss/fold_03/seed_42/best_model.pt": "55c36af96c617d5e4de44df897a91eaff41e3cae13a29155be4c0931d860fd6c",
+        "ablations/no_condition/fold_03/seed_42/best_model.pt": "03d58ec6b17ad129f16d52ae1992b2186e5ed48a97fe3a0f271da8dcca3c3a29"
+      }
+    },
+    {
+      "fold": 4,
+      "selected": {
+        "fold": 4,
+        "beta": 0.01,
+        "lambda_hr": 0.1,
+        "supported_targets": [
+          60,
+          80,
+          120
+        ],
+        "validation_seed": 1042,
+        "num_val_samples": 200,
+        "selection_rule": "V>=95% at supported targets, MAE, 0.1 bpm tie RMSE; fallback A3",
+        "selected_metrics": {
+          "beta": 0.01,
+          "lambda_hr": 0.1,
+          "all_V_ge_95": true,
+          "mean_mae_hr": 21.58960838572668,
+          "mean_A3": 0.07333333333333333,
+          "val_rmse": 0.5966396331787109
+        }
+      },
+      "detector": {
+        "min_distance": 20,
+        "prominence": 0.5
+      },
+      "detector_sha256": "6ea0b2042e5dc5584e5e4cd0525c9f3b851c2da6355440000a2bfde25838856c",
+      "normalization_sha256": "e97ab6597386b36caac9ee29f649e5eb6409f7e8f678d403ef6ca1dd15c98907",
+      "checkpoints_sha256": {
+        "cvae/fold_04/seed_42/best_model.pt": "60df1a1daf7bde80e2b4ae6304a0be76f6bf6306012d1af6b51932601ce3ea8c",
+        "gaussian/fold_04/seed_42/gaussian_fit.json": "f087e79d6b33157e5d171c2cf6755383f64d6e6043d2b5c0eaa5652da2544c8f",
+        "cvae/fold_04/seed_43/best_model.pt": "c8658db7897faa43d8a456b0d57bc03ce4c9565b4435e84490691409accf7b7a",
+        "gaussian/fold_04/seed_43/gaussian_fit.json": "f087e79d6b33157e5d171c2cf6755383f64d6e6043d2b5c0eaa5652da2544c8f",
+        "cvae/fold_04/seed_44/best_model.pt": "2ade5a8aaf58749e678001022d0fa40650dad9bf1f87f083d9d4ab5e6634a52b",
+        "gaussian/fold_04/seed_44/gaussian_fit.json": "f087e79d6b33157e5d171c2cf6755383f64d6e6043d2b5c0eaa5652da2544c8f",
+        "ablations/no_hr_loss/fold_04/seed_42/best_model.pt": "c06fd12043e81e649223aa100dbf9301c7aa9527904c2e487fe70bc9583b6942",
+        "ablations/no_condition/fold_04/seed_42/best_model.pt": "12dc45df9604ee9246cbbd999f277a2b3c97cf72a60e40c3b0505d7894946a40"
+      }
+    },
+    {
+      "fold": 5,
+      "selected": {
+        "fold": 5,
+        "beta": 0.01,
+        "lambda_hr": 0.1,
+        "supported_targets": [
+          60,
+          80,
+          120
+        ],
+        "validation_seed": 1042,
+        "num_val_samples": 200,
+        "selection_rule": "V>=95% at supported targets, MAE, 0.1 bpm tie RMSE; fallback A3",
+        "selected_metrics": {
+          "beta": 0.01,
+          "lambda_hr": 0.1,
+          "all_V_ge_95": true,
+          "mean_mae_hr": 20.000930379912276,
+          "mean_A3": 0.085,
+          "val_rmse": 0.41205957531929016
+        }
+      },
+      "detector": {
+        "min_distance": 20,
+        "prominence": 0.25
+      },
+      "detector_sha256": "cd505d359ef8a9aa8ecf5b3eece1a685ff30cdbba4d72aa28203f21ed001c12d",
+      "normalization_sha256": "c3f97c1d3fe0d82933f0bc4e59bc45d3afed5951cd2393f91a60b0cc5b715976",
+      "checkpoints_sha256": {
+        "cvae/fold_05/seed_42/best_model.pt": "0b73b6415c79334981b4d268cbdb762f07e6825b8a707e12845b2b978037cbf5",
+        "gaussian/fold_05/seed_42/gaussian_fit.json": "3f1e948d01749d0cedb11e7150014e59a4acf2741d23402c856712d74062ee79",
+        "cvae/fold_05/seed_43/best_model.pt": "53422497c765d28928e58e1b1703f8d875ad9769953524bfa3d3fea06ef2b6ab",
+        "gaussian/fold_05/seed_43/gaussian_fit.json": "3f1e948d01749d0cedb11e7150014e59a4acf2741d23402c856712d74062ee79",
+        "cvae/fold_05/seed_44/best_model.pt": "48da4cda0dab6871d76ac6c2976e55ad6d4b0dfc6247ac9cdeaf580f06715d9d",
+        "gaussian/fold_05/seed_44/gaussian_fit.json": "3f1e948d01749d0cedb11e7150014e59a4acf2741d23402c856712d74062ee79",
+        "ablations/no_hr_loss/fold_05/seed_42/best_model.pt": "45bfad2946d57bfeae3b52ab26f88efc6fb471382614c0b8a33246303a94ddf0",
+        "ablations/no_condition/fold_05/seed_42/best_model.pt": "eee2daae4b46b4ea9df7622acfd273ce818ef3d2d0abd7d32e5ec834d4d430d5"
+      }
+    }
+  ],
+  "proxy_policy": "frozen train-fitted proxy selected on real validation",
+  "interpretation": "HR detector/proxy limitations retained; no tuning after test"
+}

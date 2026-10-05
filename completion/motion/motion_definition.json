@@ -1,0 +1,10 @@
+{
+  "feature": "sqrt(mean(sum((ACC-axis_mean)^2))) over 256 wrist ACC samples",
+  "unit": "g as stored in the synchronized PPG-DaLiA wrist ACC",
+  "acc_fs": 32,
+  "ppg_fs": 64,
+  "label_start_sample": 0,
+  "alignment": "common t=0 in synchronized SX.pkl; exact start/end converted by fs ratio",
+  "role": "post-hoc descriptive audit; no filtering or model-selection changes",
+  "warning": "motion level is not a clean-PPG quality label"
+}

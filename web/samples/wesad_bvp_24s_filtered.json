@@ -1,0 +1,10 @@
+{
+  "source": "BVP.csv",
+  "sampling_rate_hz": 64,
+  "source_start_seconds": 60,
+  "duration_seconds": 24,
+  "samples": 1536,
+  "normalized": false,
+  "filter": "4th order Butterworth bandpass 0.5-8 Hz, causal SOS, warmed with preceding 60 seconds",
+  "note": "Uses no future values to filter context; differs from offline zero-phase training filter. On web uncheck normalized to scale using first 8 seconds."
+}

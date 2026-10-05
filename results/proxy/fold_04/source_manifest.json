@@ -1,0 +1,15 @@
+{
+  "source_job": "20261004-142710-0769e3",
+  "fold": 4,
+  "files_sha256": {
+    "detector_config.json": "6ea0b2042e5dc5584e5e4cd0525c9f3b851c2da6355440000a2bfde25838856c",
+    "detector_validation_metrics.json": "8f050dde5ce5b26cbe1f0efe59091e0b20296ae660f229534dc04c08a0f56720",
+    "environment.json": "2b9b2c22022347b52fab691f37864bd896b22b50c5ce18cec8beafca25a22b70",
+    "hr_proxy.pt": "f7827f31ff2cc3c29d93b6e90c5288111f8b8f81ab798b98ad061dcc01a35b64",
+    "hr_proxy_validation_metrics.json": "ff0af843eca1e70cc0c44b5314a9bde8bdc6a948bac1b47e638b815ba5b064be",
+    "resolved_config.json": "ba7fc06390aca0942cb8387d4e704524ad87c8a611111356395d771cdc85c92c",
+    "training_history.csv": "fe5b9ee5d36813a36974682b3e4e766d5c1d6c69c3e684241f6527ed21cfcb93",
+    "validation_by_hr_bin_lower.csv": "6135cd3067b898af935e082e1403a99003d21ae61ab07ffea03701db299ca74c",
+    "validation_by_subject_id.csv": "2fa552cd29b078d4ad9c79bc4309d823275979e742a3f1abdad4c10c8aea1e00"
+  }
+}

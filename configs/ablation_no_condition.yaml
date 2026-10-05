@@ -1,0 +1,5 @@
+name: ablation_no_condition
+condition_mode: zero
+lambda_hr: 0.0
+lambda_prior: 0.0
+seed: 42
